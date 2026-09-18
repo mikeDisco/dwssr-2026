@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "DEBUG=dwssr-2026:* node ./bin/www"
+    "start": "DEBUG=dwssr-2026:* node ./bin/www",
+    "greet": "echo 'Hola mundo'"
+   
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
