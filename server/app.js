@@ -1,13 +1,18 @@
 //funcion para marcar errores 
-var createError = require('http-errors');
+//var createError = require('http-errors');
+import createError from 'http-errors';
 //Importa el framework express
-var express = require('express');
+//var express = require('express');
+import express from 'express';
 //importa modulos para manejar rutas, cookies y logs
-var path = require('path');
+//var path = require('path');
+import path from 'node:path';
 ///importa modulos para manejar cookies y logs
-var cookieParser = require('cookie-parser');
+//var cookieParser = require('cookie-parser');
+import cookieParser from 'cookie-parser';
 //importa modulos para manejar logs
-var logger = require('morgan');
+//var logger = require('morgan');
+import logger from 'morgan';
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
