@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "DEBUG=dwssr-2026:* node ./server/bin/www",
+    "start": "node ./server/bin/www",
+    "dev": "DEBUG=dwssr-2026:* node ./server/bin/www.js",
     "greet": "echo 'Hola mundo'"
    
   },
