@@ -5,7 +5,7 @@
  */
 
 
-import app from '../app'
+import app from '../app.js';
 //importando Debut
 import createDebug from 'debug';
 //var debug = require('debug')('dwssr-2026:server');
