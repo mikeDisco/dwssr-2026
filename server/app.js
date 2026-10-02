@@ -29,9 +29,9 @@ const __dirname = dirname(__filename);
 
 
 //var indexRouter = require('./routes/index');
-import indexRouter from './routes/index.js';
+import indexRouter from '#routes/index.js';
 //var usersRouter = require('./routes/users');
-import usersRouter from './routes/users.js';
+import usersRouter from '#routes/users.js';
 // crear la aplicacion de express
 debug("🔨 Creando backend");
 const app = express();
