@@ -4,8 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "node ./server/bin/www",
+    "start": " NODE_ENV=production node ./server/bin/www.js",
     "dev": "DEBUG=dwssr-2026:* nodemon ./server/bin/www.js",
+    "dev:vite": "vite",
+    "dev:all": "concurrently \"npm run dev\" \"npm run dev:vite\"",
+    "build": "vite build",
+    "preview": "npm run build && npm start",
     "greet": "echo 'Hola mundo'"
   },
   "dependencies": {
@@ -17,10 +21,10 @@
     "morgan": "~1.9.1"
   },
   "devDependencies": {
+    "concurrently": "^10.0.5",
     "nodemon": "^3.1.14"
   },
-  
-"imports": {
+  "imports": {
     "#server/*": "./server/*",
     "#routes/*": "./server/routes/*"
   }

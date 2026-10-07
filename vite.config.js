@@ -1,6 +1,11 @@
 import {defineConfig} from 'vite';
 
 import { resolve } from 'node: path';
+//Imports para crear dirname
+import { fileURLToPath } from 'node:url';
+import { dirname } from 'node:path';    
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 export default defineConfig({
 
     root:' src',
