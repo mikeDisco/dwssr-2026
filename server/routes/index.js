@@ -1,10 +1,14 @@
 import express from 'express';
 const router = express.Router();
 
+let counter = 0;
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  counter++;
+  res.render('index', { title: 'Andre Bonilla',
+    counter: counter
+  });
 });
 
-//module.exports = router;
 export default router;

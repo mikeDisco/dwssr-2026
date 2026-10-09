@@ -1,61 +1,42 @@
-//funcion para marcar errores 
-//var createError = require('http-errors');
 import createError from 'http-errors';
-//Importa el framework express
-//var express = require('express');
 import express from 'express';
-//importa modulos para manejar rutas, cookies y logs
-//var path = require('path');
 import path from 'node:path';
-///importa modulos para manejar cookies y logs
-//var cookieParser = require('cookie-parser');
 import cookieParser from 'cookie-parser';
-//importa modulos para manejar logs
-//var logger = require('morgan');
 import logger from 'morgan';
-//importando Debug
 import createDebug from 'debug';
-//Imports para crear dirname
 import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
 import hbs from 'hbs';
 
-//creacion del objeto debug
+import indexRouter from '#routes/index.js';
+import usersRouter from '#routes/users.js';
+import { registerHelpers } from './lib/vite.js';
+
 const debug = createDebug('dwssr-2026:server');
 
-//creando la variable
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-
-
-//var indexRouter = require('./routes/index');
-import indexRouter from '#routes/index.js';
-//var usersRouter = require('./routes/users');
-import usersRouter from '#routes/users.js';
-// Importando el registrador de helpers de Handlebars
-import { registerHelpers } from './lib/vite.js';
-// crear la aplicacion de express
 debug("🔨 Creando backend");
 const app = express();
 
-// configurar el motor de plantillas y la carpeta de vistas
+// Configurar motor de plantillas
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-// Registrando helpers de Handlebars
+
+// Registrar helpers de Handlebars
 registerHelpers(hbs);
 
-// configurar middlewares para la aplicacion
+// Middlewares estándar
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-
-// Archivos estaticos para producción 
-if(process.env.NODE_ENV === 'production'){
+// Integración de Vite en modo desarrollo vs producción
+if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '..', 'dist')));
-  }
+}
 
 debug("🔨 Creando servidor de archivos estaticos");
 app.use(express.static(path.join(__dirname, '..', 'public')));
@@ -64,18 +45,16 @@ debug("📁 Registando rutas");
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-// catch 404 and forward to error handler
+// Manejo de errores 404
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// error handler
+// Manejador general de errores
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
   res.status(err.status || 500);
   res.render('error');
 });
