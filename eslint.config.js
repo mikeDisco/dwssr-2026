@@ -3,5 +3,53 @@ import globals from "globals";
 import { defineConfig } from "eslint/config";
 
 export default defineConfig([
-  { files: ["**/*.{js,mjs,cjs}"], plugins: { js }, extends: ["js/recommended"], languageOptions: { globals: {...globals.browser, ...globals.node} } },
+  // Ignora los archivos de compilación y dependencias
+  {
+    ignores: [
+      "dist/**",
+      "node_modules/**"
+    ]
+  },
+
+  // Configuración del backend
+  {
+    files: ["server/**/*.{js,mjs}"],
+    plugins: { js },
+    extends: ["js/recommended"],
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      globals: {
+        ...globals.node
+      }
+    }
+  },
+
+  // Configuración del frontend
+  {
+    files: ["src/**/*.{js,mjs}"],
+    plugins: { js },
+    extends: ["js/recommended"],
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      globals: {
+        ...globals.browser
+      }
+    }
+  },
+
+  // Configuración opcional para JavaScript en public
+  {
+    files: ["public/**/*.{js,mjs}"],
+    plugins: { js },
+    extends: ["js/recommended"],
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      globals: {
+        ...globals.browser
+      }
+    }
+  }
 ]);

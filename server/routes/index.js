@@ -7,7 +7,7 @@ let counter = 0;
 router.get('/', function(req, res) {
   counter++;
   res.render('index', { 
-    title: 'Adrian Rocha',
+    title: 'ANDRE BONILLA',
     counter: counter 
   });
 });
