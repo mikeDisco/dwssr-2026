@@ -2,16 +2,21 @@ import { defineConfig } from 'vite';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
+import tailwindcss from '@tailwindcss/vite';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export default defineConfig({
   root: 'src',
+  // Agregando a Vite el plugin de Tailwind
+  plugins: [
+    tailwindcss(),
+  ],
   // Configuración del servidor de desarrollo
   server: {
     port: 5173,
-    strictPort: true, // Corregido: en Vite la opción es strictPort
+    strictPort: true,
   },
   // Configuración de empaquetado (Build)
   build: {

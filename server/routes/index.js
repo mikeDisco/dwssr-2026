@@ -7,8 +7,9 @@ let counter = 0;
 router.get('/', function(req, res) {
   counter++;
   res.render('index', { 
-    title: 'ANDRE BONILLA',
-    counter: counter 
+    title: 'Andre Bonilla',
+    counter: counter,
+    numbers: [1] // Pasa el arreglo para ejecutar el bucle
   });
 });
 

@@ -2,9 +2,11 @@
 <html>
   <head>
     <title>{{title}}</title>
-    <!--Carga de Script -->
-    {{!-- Cargando los scripts con el Helper --}}
-    {{{ viteAssets }}} 
+    <!-- Carga directa del servidor de desarrollo de Vite -->
+    <script type="module" src="http://localhost:5173/@vite/client"></script>
+    <script type="module" src="http://localhost:5173/main.js"></script>
+    <!-- Importante: Cargar los estilos CSS -->
+    <link rel="stylesheet" href="http://localhost:5173/styles/main.css">
   </head>
   <body>
     {{{body}}}

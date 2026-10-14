@@ -60,12 +60,3 @@ app.use(function(err, req, res, _next) {
 });
 
 export default app;
-/*
-(()=>{
-  let age = 10;
-  return;
-  if(age == 10){
-    console.log();
-  }
-})();
-*/

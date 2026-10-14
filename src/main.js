@@ -1,4 +1,5 @@
-import './styles/main.css'
+// Importa tu archivo de estilos principal (Tailwind y CSS personalizado)
+import './main.css';
 
-// Imprimiendo en consola 
-console.log("🎉VITE ⚡+ EXPRESS 🚂 Working!!")
+// Aquí puedes agregar la lógica de JavaScript que necesite tu aplicación del lado del cliente
+console.log("Aplicación inicializada correctamente");
