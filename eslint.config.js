@@ -22,6 +22,9 @@ export default defineConfig([
       globals: {
         ...globals.node
       }
+    },
+    rules: {
+      "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
     }
   },
 
