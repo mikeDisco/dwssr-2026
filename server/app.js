@@ -51,7 +51,6 @@ app.use(function(req, res, next) {
 });
 
 // Manejador general de errores
-
 app.use(function(err, req, res, _next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -61,3 +60,12 @@ app.use(function(err, req, res, _next) {
 });
 
 export default app;
+/*
+(()=>{
+  let age = 10;
+  return;
+  if(age == 10){
+    console.log();
+  }
+})();
+*/
