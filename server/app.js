@@ -1,11 +1,10 @@
 import createError from 'http-errors';
 import express from 'express';
-import path from 'node:path';
+import path, { dirname } from 'node:path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import createDebug from 'debug';
 import { fileURLToPath } from 'node:url';
-import { dirname } from 'node:path';
 import hbs from 'hbs';
 
 import indexRouter from '#routes/index.js';
@@ -46,12 +45,12 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // Manejo de errores 404
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   next(createError(404));
 });
 
 // Manejador general de errores
-app.use(function(err, req, res, _next) {
+app.use((err, req, res, _next) => {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 

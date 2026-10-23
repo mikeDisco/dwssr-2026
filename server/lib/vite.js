@@ -1,7 +1,10 @@
 import fs from 'node:fs';
-import path from 'node:path';
+import path, { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { dirname } from 'node:path';
+
+import createDebug from 'debug';
+
+const debug = createDebug('dwssr-2026:server');
 
 // Variables de ruta para ES Modules
 const __filename = fileURLToPath(import.meta.url);
@@ -43,7 +46,7 @@ export function viteAssets() {
     );
 
     if (!fs.existsSync(manifestPath)) {
-        console.warn(
+        debug(
             "Vite manifest not found. Run 'npm run build' to generate it."
         );
         return '';
@@ -57,7 +60,7 @@ export function viteAssets() {
     const mainEntry = manifest['src/main.js'] || manifest['main.js'];
 
     if (!mainEntry) {
-        console.warn(
+        debug(
             'El archivo principal no está disponible en el manifiesto de Vite'
         );
         return '';
@@ -82,7 +85,5 @@ export function viteAssets() {
  * Registrar los helpers en Handlebars
  */
 export function registerHelpers(hbs) {
-    hbs.registerHelper('viteAssets', () => {
-        return new hbs.SafeString(viteAssets());
-    });
+    hbs.registerHelper('viteAssets', () => new hbs.SafeString(viteAssets()));
 }
