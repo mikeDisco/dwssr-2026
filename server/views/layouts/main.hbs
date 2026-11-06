@@ -1,12 +1,18 @@
+
 <!DOCTYPE html>
 <html>
   <head>
     <title>{{title}}</title>
-    <!-- Carga directa del servidor de desarrollo de Vite -->
-    <script type="module" src="http://localhost:5173/@vite/client"></script>
-    <script type="module" src="http://localhost:5173/main.js"></script>
-    <!-- Importante: Cargar los estilos CSS -->
-    <link rel="stylesheet" href="http://localhost:5173/styles/main.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon_io/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png">
+
+    <!-- Carga de scripts -->
+    {{{ viteAssets }}}
+   
   </head>
   <body>
     {{{body}}}
