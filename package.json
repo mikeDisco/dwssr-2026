@@ -1,23 +1,24 @@
 {
-  "name": "dwssr-2026",
+  "name": "dwssr-2026b",
   "version": "0.0.0",
   "private": true,
   "type": "module",
   "scripts": {
     "start": "NODE_ENV=production node ./server/bin/www.js",
-    "dev": "DEBUG=dwssr-2026:* nodemon ./server/bin/www.js",
-    "dev:vite": "vite",
+    "dev": "DEBUG=dwssr-2026b:* nodemon ./server/bin/www.js",
+    "dev:vite": "vite --host",
     "dev:all": "concurrently \"npm run dev\" \"npm run dev:vite\"",
     "build": "vite build",
     "preview": "npm run build && npm start",
-    "greet": "echo 'Hola mundo'",
+    "greet": "echo 'Hola Mundo'",
     "lint:all": "npm run lint:back && npm run lint:front",
     "lint:back": "eslint \"server/**/*.js\"",
     "lint:front": "eslint \"src/**/*.js\"",
-    "lint:fix": "eslint . --fix",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "clean:logs": "rm -rf ./logs/*.log"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
