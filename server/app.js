@@ -1,47 +1,51 @@
 // Funcion para manejar errores
+// ❌var createError = require('http-errors');
 import createError from 'http-errors';
 // Importa el framework express
+// ❌var express = require('express');
 import express from 'express';
 // Importa modulos para manejar rutas y dirname
+// ❌var path = require('path');
 import path, { dirname } from 'node:path';
 // Importa modulos para manejar cookies
+// ❌var cookieParser = require('cookie-parser');
 import cookieParser from 'cookie-parser';
 // Importa modulos para manejar logs
+// ❌var logger = require('morgan');
 import morgan from 'morgan';
 // importando biblioteca de debug
-import createDebug from 'debug';
+//import createDebug from 'debug';
 // Imports para crear dirname
 import { fileURLToPath } from 'node:url';
 
-// Importando el template engine de Handlebars
-import hbs from 'hbs';
+
 
 // Importan las rutas de la aplicacion
-import router from '#routes/index.js';  
+// var indexRouter = require('./routes/index');
+import indexRouter from '#routes/index.js'; // eslint-disable-line import-x/no-rename-default
+// var usersRouter = require('./routes/users');
 import usersRouter from '#routes/users.js';  
-// Importando el registrador del Helper (nombre corregido según lib/vite.js)
-import { registerViteHelper } from './lib/vite.js';
-// Importando la configuracion de winston logger (renombrado para evitar conflicto con morgan)
-import logger from "./lib/winston.js";
+//importando la funcion de configuracion de Hbs
+import configureHandlebars from './lib/handlebars.js';
+// Importando la configuracion de winston logger
+import logger from "./lib/winston.js"
 
 // Creacion del objeto debug
-const debug = createDebug('dwssr-2026:server');
+//const debug = createDebug('dwssr-2026:server');
 // Creando las variables
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Crear la aplicacion express
-debug('🔨  Creando backend');
+//Creando backend
+logger.info('🔨  Creando backend');
 // Crea la aplicacion express
 const app = express();
 
 // Configura el motor de vistas con hbs
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
-// Registro helper corregido
-registerViteHelper(hbs);
+configureHandlebars(app)
 
-// Configura middlewares de la aplicacion (usando winstonLogger)
+// Configura middlewares de la aplicacion
 app.use(morgan('dev', { stream: { write: (msg) => logger.info(msg.trim()) } }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -53,12 +57,12 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Configura la carpeta de archivos estaticos
-debug('🔨  Creando servidor de archivos estaticos');
+logger.info('🔨  Creando servidor de archivos estaticos');
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
-// Registramos rutas de la aplicacion (usando router)
-debug('🛣️ Registrando rutas');
-app.use('/', router);
+// Registramos rutas de la aplicacion
+logger.info('🛣️ Registrando rutas');
+app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
@@ -77,4 +81,5 @@ app.use((err, req, res, _next) => {
   res.render('error');
 });
 
+// module.exports = app;
 export default app;
