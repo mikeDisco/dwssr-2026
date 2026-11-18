@@ -1,10 +1,4 @@
-import express from 'express';
+import UsersRouter from '../modules/users/users.routes.js';
 
-const usersRouter = express.Router();
-
-/* GET users listing. */
-usersRouter.get('/', (req, res, _next) => {
-  res.send('<h1 style="color: red;">Lista de amigos</h1>');
-});
-
-export default usersRouter;
+//Exportando el enrutador
+export default UsersRouter;

@@ -21,17 +21,13 @@ import { fileURLToPath } from 'node:url';
 
 
 // Importan las rutas de la aplicacion
-// var indexRouter = require('./routes/index');
-import indexRouter from '#routes/index.js'; // eslint-disable-line import-x/no-rename-default
-// var usersRouter = require('./routes/users');
-import usersRouter from '#routes/users.js';  
+import homeRouter from '#routes/index.js'; // eslint-disable-line import-x/no-rename-default
+import usersRouter from '#routes/users.js'; // eslint-disable-line import-x/no-rename-default
 //importando la funcion de configuracion de Hbs
 import configureHandlebars from './lib/handlebars.js';
 // Importando la configuracion de winston logger
 import logger from "./lib/winston.js"
 
-// Creacion del objeto debug
-//const debug = createDebug('dwssr-2026:server');
 // Creando las variables
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -62,7 +58,7 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // Registramos rutas de la aplicacion
 logger.info('🛣️ Registrando rutas');
-app.use('/', indexRouter);
+app.use('/', homeRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
